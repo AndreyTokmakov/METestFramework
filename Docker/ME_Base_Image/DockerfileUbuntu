@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install cmake make wget bash openssl build-essential libssl-dev libboost-dev zlib1g-dev libcurl4-openssl-dev libmysqlcppconn-dev -y
+
+RUN wget https://archive.apache.org/dist/pulsar/pulsar-client-cpp-3.5.1/deb-x86_64/apache-pulsar-client.deb -P /tmp
+RUN wget https://archive.apache.org/dist/pulsar/pulsar-client-cpp-3.5.1/deb-x86_64/apache-pulsar-client-dev.deb -P /tmp
+RUN apt install ./tmp/apache-pulsar-client*.deb
+
+RUN rm /tmp/apache-pulsar-client-dev.deb
+RUN rm /tmp/apache-pulsar-client.deb

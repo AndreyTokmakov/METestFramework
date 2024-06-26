@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+
+    database:
+        hostname: mysql_database
+        restart: always
+        container_name: mysql_database
+
+        image: mysql
+        # image: mysql:latest
+
+        # volumes:
+        #     - /tmp/docker/mysql:/var/lib/mysql
+
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=snapshots
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=qwerty12345
+
+        ports:
+            - 3306:3306/tcp
+            - 33060:33060/tcp
+
+        network_mode: "host"   
+
+
+networks:
+    host:
+        name: host
+        external: true
